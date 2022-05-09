@@ -34,7 +34,7 @@
 		4A451F18281ECF5E00947A01 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		4A451F1A281F788D00947A01 /* GridView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView1.swift; sourceTree = "<group>"; };
 		4A451F1C281F78B000947A01 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		4A4C8C5928235E2100AE9306 /* UIbrary1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIbrary1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A4C8C5928235E2100AE9306 /* UIbrary1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = UIbrary1.app; path = "/Users/cdk/Desktop/ADA/NC1  UIbrary/UIbrary/build/Debug-iphoneos/UIbrary1.app"; sourceTree = "<absolute>"; };
 		4A72FB5C2820F9DB00B7C4BC /* GridElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridElementView.swift; sourceTree = "<group>"; };
 		4A99B5AD2821767B001A756D /* addPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPostView.swift; sourceTree = "<group>"; };
 		4AA5F956281EBED400568289 /* UIbrary1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIbrary1App.swift; sourceTree = "<group>"; };
@@ -74,7 +74,6 @@
 				4AA5F955281EBED400568289 /* UIbrary1 */,
 				89D3A94CA6B1E3976B54B265 /* Pods */,
 				8F575472CED51D26560B7374 /* Frameworks */,
-				4A4C8C5928235E2100AE9306 /* UIbrary1.app */,
 			);
 			sourceTree = "<group>";
 		};

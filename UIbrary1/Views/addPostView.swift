@@ -48,6 +48,7 @@ struct addPostView: View {
                     }
                 }
                 // thumbnail & video
+                // gif로 대체할 경우 thumbnail이 필요 없음
                 VStack{
                     Text("Video")
                         .font(.title3)
@@ -89,15 +90,23 @@ struct addPostView: View {
                         .frame(width:171)
                 }
                 VStack(alignment:.leading){
-                    Text("Compoent")
-                        .font(.system(size: 10))
+                    
+                    HStack {
+                        Text("Compoent")
+                            .font(.system(size: 10))
                         .foregroundColor(.gray)
+                        Text("*")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.compulsory)
+                        
+                    }
                     if selectedComponent == Components.직접입력 {
                         ZStack {
                             TextField("", text: $componentName)
                                 .textFieldStyle(.roundedBorder)
                             Button(action:{
                                 selectedComponent = Components.Text
+                                componentName = ""
                             }) {Text("pick")}
                                 .font(.system(size: 10))
                                 .foregroundColor(.blue)
@@ -126,15 +135,21 @@ struct addPostView: View {
             // Effect & Trigger
             HStack{
                 VStack(alignment:.leading){
-                    Text("Effect")
-                        .font(.system(size: 10))
+                    HStack {
+                        Text("Effect")
+                            .font(.system(size: 10))
                         .foregroundColor(.gray)
+                        Text("*")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.compulsory)
+                    }
                     if selectedEffect == Effects.직접입력 {
                         ZStack {
                             TextField("", text: $effectName)
                                 .textFieldStyle(.roundedBorder)
                             Button(action:{
                                 selectedEffect = Effects.Move
+                                effectName = ""
                             }) {Text("pick")}
                                 .font(.system(size: 10))
                                 .foregroundColor(.blue)
@@ -155,15 +170,21 @@ struct addPostView: View {
                     }
                 }
                 VStack(alignment:.leading){
-                    Text("Trigger")
-                        .font(.system(size: 10))
+                    HStack {
+                        Text("Trigger")
+                            .font(.system(size: 10))
                         .foregroundColor(.gray)
+                        Text("*")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.compulsory)
+                    }
                     if selectedTrigger == Triggers.직접입력 {
                         ZStack {
                             TextField("", text: $triggerName)
                                 .textFieldStyle(.roundedBorder)
                             Button(action:{
                                 selectedTrigger = Triggers.Tap
+                                triggerName = ""
                             }) {Text("pick")}
                                 .font(.system(size: 10))
                                 .foregroundColor(.blue)

@@ -33,9 +33,6 @@ struct postView: View {
                     .padding()
                 
                 
-                
-                
-                
                 ZStack {
                     
                     ScrollView(.horizontal, showsIndicators: false){

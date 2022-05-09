@@ -144,7 +144,6 @@ struct SearchView: View {
         //
         var rawData: [String] = [animationName, componentName, selectedComponent.rawValue, effectName, selectedEffect.rawValue, triggerName, selectedTrigger.rawValue]
         
-        
         for st in rawData {
             if st != "" && st != "없음" {
                 processedData.append(st)

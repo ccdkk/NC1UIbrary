@@ -15,6 +15,7 @@ extension Color {
     static let componentTag = Color("componentTag")
     static let effectTag = Color("effectTag")
     static let triggerTag = Color("triggerTag")
+    static let compulsory = Color("compulsory")
 }
 
 struct MainView: View {
@@ -50,20 +51,8 @@ struct MainView: View {
                 }
             }
             .navigationBarTitle("UIbrary", displayMode: .inline)
-            
-            //            if isSearch == true {
-            //                SearchView()
-            //                    .transition(.move(edge: .top))
-            //                    .animation(Animation.default)
-            
         }
     }
-//    func appendList(element1: String) -> [String] {
-//        processedData.insert(element1, at: <#T##Int#>)
-//        print(processedData)
-//
-//        return processedData
-//    }
 }
 
 

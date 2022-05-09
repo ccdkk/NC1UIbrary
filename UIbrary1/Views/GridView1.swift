@@ -66,13 +66,16 @@ struct GridView1: View {
         .navigationBarTitle("UIbrary", displayMode: .inline)
         .onAppear(perform: {
             print(processedData)
-//            sortedcontents()
-//            print(contents)
+            print(contents)
+            
         })
     }
     func sortedcontents() -> [Content] {
-        // contents 내부를 sorted
-         for content in contents {
+        // Search 기능
+        // contents를 deepcopy하여 내부를 sorted하여 copy본 return
+        var contentsCopy: [Content] = contents
+        
+         for content in contentsCopy {
              var isContain: [Bool] = []
              for search in processedData {
                  if content.tags.contains(search) {
@@ -80,11 +83,12 @@ struct GridView1: View {
                  }
              }
              if isContain.count != processedData.count {
-                 let index = contents.firstIndex(of: content)
-                 contents.remove(at:index!)
+                 let index = contentsCopy.firstIndex(of: content)
+                 contentsCopy.remove(at:index!)
              }
          }
-         return contents
+        
+         return contentsCopy
     }
 }
 
