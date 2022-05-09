@@ -1,0 +1,6 @@
+framework module Pods_UIbrary1 {
+  umbrella header "Pods-UIbrary1-umbrella.h"
+
+  export *
+  module * { export * }
+}
