@@ -10,6 +10,7 @@
 		4A451F19281ECF5E00947A01 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A451F18281ECF5E00947A01 /* Data.swift */; };
 		4A451F1B281F788D00947A01 /* GridView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A451F1A281F788D00947A01 /* GridView1.swift */; };
 		4A451F1D281F78B000947A01 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A451F1C281F78B000947A01 /* SearchView.swift */; };
+		4A55C63D282945BE0034B440 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A55C63C282945BE0034B440 /* ImagePicker.swift */; };
 		4A72FB5D2820F9DB00B7C4BC /* GridElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A72FB5C2820F9DB00B7C4BC /* GridElementView.swift */; };
 		4A99B5AE2821767B001A756D /* addPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99B5AD2821767B001A756D /* addPostView.swift */; };
 		4AA5F957281EBED400568289 /* UIbrary1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5F956281EBED400568289 /* UIbrary1App.swift */; };
@@ -35,6 +36,7 @@
 		4A451F1A281F788D00947A01 /* GridView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView1.swift; sourceTree = "<group>"; };
 		4A451F1C281F78B000947A01 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		4A4C8C5928235E2100AE9306 /* UIbrary1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = UIbrary1.app; path = "/Users/cdk/Desktop/ADA/NC1  UIbrary/UIbrary/build/Debug-iphoneos/UIbrary1.app"; sourceTree = "<absolute>"; };
+		4A55C63C282945BE0034B440 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4A72FB5C2820F9DB00B7C4BC /* GridElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridElementView.swift; sourceTree = "<group>"; };
 		4A99B5AD2821767B001A756D /* addPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPostView.swift; sourceTree = "<group>"; };
 		4AA5F956281EBED400568289 /* UIbrary1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIbrary1App.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				4A451F1A281F788D00947A01 /* GridView1.swift */,
 				4AACD3F128210D6C00022941 /* GridView2.swift */,
 				4AF7ED1628225F1700EA57A7 /* GifView.swift */,
+				4A55C63C282945BE0034B440 /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				4AACD3F228210D6C00022941 /* GridView2.swift in Sources */,
 				4AA5F957281EBED400568289 /* UIbrary1App.swift in Sources */,
 				4A72FB5D2820F9DB00B7C4BC /* GridElementView.swift in Sources */,
+				4A55C63D282945BE0034B440 /* ImagePicker.swift in Sources */,
 				4AF7ED1B282268F500EA57A7 /* cardmoveView.swift in Sources */,
 				4AACD3F628214FAA00022941 /* HighlightEditor.swift in Sources */,
 			);

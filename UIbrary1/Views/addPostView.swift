@@ -24,19 +24,29 @@ struct addPostView: View {
     @State private var selectedEffect = Effects.없음
     @State private var selectedTrigger = Triggers.없음
     
+    // 사진 목록관련 property
+    @State private var showPhotoLibrary = false // 사진 목록
+    @State private var image = UIImage() // 선택된 사진을 담을 곳
+    @State private var gifImage: Image = Image(systemName: "camera.fill") // 프로필 사진
+    
     var body: some View {
         List{
             // Title & Link
-            TextField("Title", text: $addTitle)
+            TextField("Title *", text: $addTitle)
             TextField("Link", text: $addLink)
             HStack(spacing:10){
+                
+                // thumbnail & video
+                // gif로 대체할 경우 thumbnail이 필요 없음
+                
                 VStack{
-                    Text("Thumbnail")
+                    Text("GIF")
                         .font(.title3)
                     Button(action:{
-                        
+                        showPhotoLibrary.toggle()
                     }) {
-                        Image(systemName: "camera.fill")
+//                        Image(systemName: "camera.fill")
+                        gifImage
                             .resizable()
                             .foregroundColor(.black)
                             .frame(width:40,height:35)
@@ -46,28 +56,30 @@ struct addPostView: View {
                                     .frame(width: 70, height: 70))
                             .padding()
                     }
-                }
-                // thumbnail & video
-                // gif로 대체할 경우 thumbnail이 필요 없음
-                VStack{
-                    Text("Video")
-                        .font(.title3)
-                        .offset(y:-5)
-                    Button(action:{
-                        
-                    }) {
-                        Image(systemName: "video.fill")
-                            .resizable()
-                            .foregroundColor(.black)
-                            .frame(width:35,height:25)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.black, lineWidth: 3)
-                                    .frame(width: 70, height: 70))
-                            .padding()
-                        
+                    .buttonStyle(PlainButtonStyle())
+                    .sheet(isPresented: $showPhotoLibrary) { // 사진 목록
+                        ImagePicker(sourceType: .photoLibrary, selectedImage: $image, gifImage: $gifImage)
                     }
                 }
+              
+//                VStack{
+//                    Text("Video")
+//                        .font(.title3)
+//                        .offset(y:-5)
+//                    Button(action:{
+//
+//                    }) {
+//                        Image(systemName: "video.fill")
+//                            .resizable()
+//                            .foregroundColor(.black)
+//                            .frame(width:35,height:25)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .stroke(Color.black, lineWidth: 3)
+//                                    .frame(width: 70, height: 70))
+//                            .padding()
+//                    }
+//                }
                 Spacer()
             }
             .padding()
@@ -133,6 +145,7 @@ struct addPostView: View {
             .listRowSeparator(.hidden)
             
             // Effect & Trigger
+            
             HStack{
                 VStack(alignment:.leading){
                     HStack {
@@ -245,8 +258,8 @@ struct addPostView: View {
 //    }
 //}
 
-struct addPostView_Previews: PreviewProvider {
-    static var previews: some View {
-        addPostView()
-    }
-}
+//struct addPostView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        addPostView(profileImage: .constant(Image("front")))
+//    }
+//}
