@@ -22,36 +22,41 @@ struct MainView: View {
     
     @State private var isSearch :Bool = false
     @State private var processedData: [String] = []
-
-
+    
+    //pop to root
+    @StateObject var environmentPopToRoot: PopToRoot = PopToRoot(popToRootBool: false)
+    
     var body: some View {
-        ZStack{
-            Color.background
-                .ignoresSafeArea()
-            VStack{
-                HStack(spacing:10){
-                    //                    SearchButton(isSearch: $isSearch)
-                    NavigationLink(destination: SearchView())
-                    {SearchButton()
+        NavigationView{
+            ZStack{
+                Color.background
+                    .ignoresSafeArea()
+                VStack{
+                    HStack(spacing:10){
+                        //                    SearchButton(isSearch: $isSearch)
+                        NavigationLink(destination: SearchView())
+                        {SearchButton()
+                        }
+                        NavigationLink(destination: addPostView())
+                        {
+                            Image(systemName: "plus.app")
+                                .resizable()
+                                .frame(width:30,height:30)
+                                .foregroundColor(.darkGray)
+                        }
                     }
-                    NavigationLink(destination: addPostView())
-                    {
-                        Image(systemName: "plus.app")
-                            .resizable()
-                            .frame(width:30,height:30)
-                            .foregroundColor(.darkGray)
-                    }
-                }
-                List{
-                    ForEach(componentList, id: \.self){ element in
-                        NavigationLink(destination: GridView1(processedData: [element])){
-                            Text(element)
+                    List{
+                        ForEach(componentList, id: \.self){ element in
+                            NavigationLink(destination: GridView1(processedData: [element]), isActive: self.$environmentPopToRoot.popToRootBool){
+                                Text(element)
+                            }
                         }
                     }
                 }
+                .navigationBarTitle("UIbrary", displayMode: .inline)
             }
-            .navigationBarTitle("UIbrary", displayMode: .inline)
         }
+        .environmentObject(self.environmentPopToRoot)
     }
 }
 
@@ -75,33 +80,6 @@ struct SearchButton: View{
         }
     }
 }
-
-
-// modal 형식
-//struct SearchButton: View{
-//    @Binding var isSearch: Bool
-//    var body: some View{
-//        Button(action:{
-//            isSearch = true
-//        }) {
-//            ZStack{
-//                Rectangle()
-//                    .frame(width: 300, height: 30)
-//                    .foregroundColor(.lightGray)
-//                    .cornerRadius(6)
-//                HStack{
-//                    Image(systemName:"magnifyingglass")
-//                    Text("Search")
-//                }
-//                .foregroundColor(.darkGray)
-//                .offset(x:-100)
-//            }
-//        }
-//    }
-//}
-
-
-
 
 
 struct MainView_Previews: PreviewProvider {

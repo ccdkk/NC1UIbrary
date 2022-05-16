@@ -9,6 +9,7 @@ import SwiftUI
 
 struct addPostView: View {
     
+    // tags, title, link 관련
     @State private var addTitle: String = ""
     @State private var addLink: String = ""
     @State private var animationName: String = ""
@@ -20,6 +21,7 @@ struct addPostView: View {
     //    @State private var isEffect: Bool = false
     //    @State private var isTrigger: Bool = false
     
+    // picker 관련
     @State private var selectedComponent = Components.없음
     @State private var selectedEffect = Effects.없음
     @State private var selectedTrigger = Triggers.없음
@@ -28,6 +30,8 @@ struct addPostView: View {
     @State private var showPhotoLibrary = false // 사진 목록
     @State private var image = UIImage() // 선택된 사진을 담을 곳
     @State private var gifImage: Image = Image(systemName: "camera.fill") // 프로필 사진
+    
+    @State private var showingAlert: Bool = false
     
     var body: some View {
         List{
@@ -45,11 +49,10 @@ struct addPostView: View {
                     Button(action:{
                         showPhotoLibrary.toggle()
                     }) {
-//                        Image(systemName: "camera.fill")
                         gifImage
                             .resizable()
                             .foregroundColor(.black)
-                            .frame(width:40,height:35)
+                            .frame(width: gifwidth(),height: gifheight())
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.black, lineWidth: 3)
@@ -62,24 +65,6 @@ struct addPostView: View {
                     }
                 }
               
-//                VStack{
-//                    Text("Video")
-//                        .font(.title3)
-//                        .offset(y:-5)
-//                    Button(action:{
-//
-//                    }) {
-//                        Image(systemName: "video.fill")
-//                            .resizable()
-//                            .foregroundColor(.black)
-//                            .frame(width:35,height:25)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 10)
-//                                    .stroke(Color.black, lineWidth: 3)
-//                                    .frame(width: 70, height: 70))
-//                            .padding()
-//                    }
-//                }
                 Spacer()
             }
             .padding()
@@ -239,12 +224,31 @@ struct addPostView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    
+                    showingAlert.toggle()
                 }) {
                     Image(systemName: "paperplane.fill")
                         .frame(width:30, height:30)
                 }
             }
+        }
+    }
+}
+
+extension addPostView {
+    
+    func gifwidth() -> CGFloat {
+        if gifImage == Image(systemName: "camera.fill") {
+            return 40
+        } else {
+            return 60
+        }
+    }
+    
+    func gifheight() -> CGFloat {
+        if gifImage == Image(systemName: "camera.fill") {
+            return 35
+        } else {
+            return 60
         }
     }
 }

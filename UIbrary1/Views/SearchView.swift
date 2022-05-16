@@ -125,7 +125,6 @@ struct SearchView: View {
                 self.showingChildView = true
             }){Text("Done").font(.system(size: 17))}
         )
-        
     }
     
     func deleteAll() {

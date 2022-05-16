@@ -10,11 +10,18 @@ import AVKit
 
 struct GridView1: View {
     
+    // grid
     private static let initialColumns = 1
     @State private var gridColumns = Array(repeating: GridItem(.flexible()), count: initialColumns)
+    
     @State private var showingSheet: Bool = false
     var processedData: [String]
     @State private var finalData: [Content] = []
+    
+    @State private var isPresentingcontent: Content? = nil
+    
+    //pop to root
+    @EnvironmentObject var environmentPopToRoot: PopToRoot
     
     var body: some View {
         VStack{
@@ -33,26 +40,15 @@ struct GridView1: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: gridColumns,spacing: 16.0) {
                     ForEach(sortedcontents()) { content in
+
                         //                        GeometryReader { geo in
                         Button (action:{
                             self.showingSheet = true
+                            isPresentingcontent = content
                         }) {
                             gridElement(content: content )
                                 .frame(height:550)
                                 .padding()
-                        }.sheet(isPresented: $showingSheet){
-                            NavigationView{
-                                postView(content: content)
-                                    .toolbar {
-                                        ToolbarItem(placement: .primaryAction) {
-                                            Button(action: {
-                                                self.showingSheet = false
-                                            }) {
-                                                Text("Done").fontWeight(.semibold)
-                                            }
-                                        }
-                                    }
-                            }
                         }
                         //                        }
                         .cornerRadius(8.0)
@@ -60,14 +56,36 @@ struct GridView1: View {
                         // 이건 뭐지?
                         //                        let _ = print("content")
                     }
+                    .sheet(item: $isPresentingcontent){ content in
+                        NavigationView{  // navigationView설정은 이후에 추가할 link자리를 위해
+                            postView(content: content)
+                                .toolbar {
+                                    ToolbarItem(placement: .primaryAction) {
+                                        Button(action: {
+//                                            self.showingSheet = false
+                                            isPresentingcontent = nil
+                                        }) {
+                                            Text("Done").fontWeight(.semibold)
+                                        }
+                                    }
+                                }
+                        }
+                    }
                 }
             }
         }
-        .navigationBarTitle("UIbrary", displayMode: .inline)
+        .toolbar {
+            ToolbarItem(id: "UIbrary", placement: .principal) {
+                Button("UIbrary") {
+                    self.environmentPopToRoot.popToRootBool.toggle()
+                }
+                .tint(.black)
+            }
+        }
         .onAppear(perform: {
-            print(processedData)
-            print(contents)
-            
+            //            print(processedData)
+            //            print(contents)
+            print(sortedcontents())
         })
     }
     func sortedcontents() -> [Content] {
@@ -75,63 +93,42 @@ struct GridView1: View {
         // contents를 deepcopy하여 내부를 sorted하여 copy본 return
         var contentsCopy: [Content] = contents
         
-         for content in contentsCopy {
-             var isContain: [Bool] = []
-             for search in processedData {
-                 if content.tags.contains(search) {
-                     isContain.append(true)
-                 }
-             }
-             if isContain.count != processedData.count {
-                 let index = contentsCopy.firstIndex(of: content)
-                 contentsCopy.remove(at:index!)
-             }
-         }
-        
-         return contentsCopy
+        for content in contentsCopy {
+            var isContain: [Bool] = []
+            for search in processedData {
+                if content.tags.contains(search) {
+                    isContain.append(true)
+                }
+            }
+            if isContain.count != processedData.count {
+                let index = contentsCopy.firstIndex(of: content)
+                contentsCopy.remove(at:index!)
+            }
+        }
+        return contentsCopy
     }
 }
 
 
 
 struct gridElement: View{
+    
     var content: Content
-    //    let size: CGFloat
-    
-    //    let videoUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "cardflipVideo", ofType: "mp4")!)
-    //    private let player = AVPlayer(url: URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8")!)
-    
     
     var body: some View{
         VStack{
             GifImage(content.video)
                 .frame(width: 200, height: 450)
                 .scaledToFill()
-            //            VideoPlayer(player: player)
-            //                       .onAppear() {
-            //                           // Start the player going, otherwise controls don't appear
-            //                           player.play()
-            //                       }
-            //                       .onDisappear() {
-            //                           // Stop the player when the view disappears
-            //                           player.pause()
-            //                       }
-            //            VideoPlayer(player: AVPlayer(url:videoUrl))
-            //                .frame(width:200, height:300)
-            //            Image(content.thumbNail)
-            //                .resizable()
-            //                .scaledToFit()
             VStack{
                 VStack(alignment: .center) {
                     Text(content.title)
                         .font(.body)
                         .foregroundColor(.black)
                         .fixedSize(horizontal: false, vertical: true)
-                    //                        .padding([.horizontal], 4)
-                    //                        .multilineTextAlignment(.center)
+                    
                     GeometryReader { geometry in
                         TestWrappedLayout(platforms: content.tags, geometry: geometry )
-                        //                            .offset(x:)
                         
                     }
                 }

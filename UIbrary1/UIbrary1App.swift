@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct UIbrary1App: App {
+    
+
+    
     var body: some Scene {
         WindowGroup {
-            NavigationView{
-              MainView()
-            }
+            
+            MainView()
         }
     }
 }

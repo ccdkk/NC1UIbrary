@@ -61,6 +61,3 @@ Content(thumbNail: "test", video: "halfmodal", title: "How to make half modal vi
 Content(thumbNail: "test", video: "cardSlide", title: "Let's make card slide!", tags: ["Image", "", "Slide horizontal", "Button"], code: "~~")
 ]
 
-var test1: [String] = [
-    "test","test","test","test","test"
-]

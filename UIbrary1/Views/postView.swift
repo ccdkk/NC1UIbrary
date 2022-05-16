@@ -11,11 +11,12 @@ import SwiftUI
 struct postView: View {
     
     var content: Content
-    @State private var text = "var body some view"
     
+    @State private var text = "var body some view"
+
     
     var body: some View {
-        ScrollView{
+        ScrollView(showsIndicators:false){
             VStack{
                 Text(content.title)
                     .font(.title)
@@ -26,7 +27,7 @@ struct postView: View {
                 }
                 .offset(x: 30)
                 
-                GifImage("cardflipVideo")
+                GifImage(content.video)
                     .frame(width:200, height:450)
                     .scaledToFill()
                     .offset(y:30)
@@ -84,6 +85,9 @@ struct postView: View {
             }
             .offset(y:-50)
         }
+        .onAppear(perform: {
+            print(content)
+        })
     }
 }
 
