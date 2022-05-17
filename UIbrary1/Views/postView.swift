@@ -36,32 +36,7 @@ struct postView: View {
                 
                 ZStack {
                     
-                    ScrollView(.horizontal, showsIndicators: false){
-                        HStack{
-                            Text("ZStack").foregroundColor(.red) + Text(" {")
-                        }
-                        .padding([.top], 50)
-                        .offset(x:-90)
-                        HStack{
-                            Text("CardFront").foregroundColor(.green) + Text("(") + Text("width").foregroundColor(.blue) + Text(": ") + Text("width").foregroundColor(.blue) + Text(", ") + Text("height").foregroundColor(.blue) + Text(": ") + Text("height").foregroundColor(.blue) + Text(")" )
-                        }.offset(x: 100)
-                        HStack{
-                            Text("CardBack").foregroundColor(.green) + Text("(") + Text("width").foregroundColor(.blue) + Text(": ") + Text("width").foregroundColor(.blue) + Text(", ") + Text("height").foregroundColor(.blue) + Text(": ") + Text("height").foregroundColor(.blue) + Text(")" )
-                        }.offset(x: 100)
-                        HStack{
-                            Text("}.") + Text("onTapGesture").foregroundColor(.purple) + Text(" {")
-                        }.offset(x:5)
-                        HStack{
-                            Text("flipCard").foregroundColor(.orange) + Text(" ()")
-                        }.offset(x:15)
-                        Text("}")
-                            .padding(.bottom)
-                            .offset(x:-55)
-                    }
-                    .background(Color.lightGray)
-                    .cornerRadius(10)
-                    .shadow(radius: 2.0)
-                    .padding()
+                    codeEditorView(content: content)
                     
                     HStack {
                         Text("Code")
