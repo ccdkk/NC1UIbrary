@@ -11,7 +11,6 @@ struct cardmoveView: View {
     @State private var playAnimation: Bool = false
     
     var body: some View {
-        
         ZStack {
             VStack{
                 Button("scale"){

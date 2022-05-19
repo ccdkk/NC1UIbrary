@@ -37,7 +37,7 @@ struct postView: View {
                 ZStack {
                     
                     codeEditorView(content: content)
-                    
+                        .offset(y:60)
                     HStack {
                         Text("Code")
                             .font(.title3)
@@ -52,7 +52,7 @@ struct postView: View {
                             Image(systemName: "square.on.square")
                         }
                     }
-                    .offset(y:-70)
+                    .offset()
                     .padding()
                     
                 }

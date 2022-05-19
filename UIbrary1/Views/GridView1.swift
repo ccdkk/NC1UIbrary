@@ -15,13 +15,16 @@ struct GridView1: View {
     @State private var gridColumns = Array(repeating: GridItem(.flexible()), count: initialColumns)
     
     @State private var showingSheet: Bool = false
-    var processedData: [String]
-    @State private var finalData: [Content] = []
+//    @State private var finalData: [Content] = []
     
     @State private var isPresentingcontent: Content? = nil
     
+    // data 정렬
+    var processedData: [String]
+    
     //pop to root
     @EnvironmentObject var environmentPopToRoot: PopToRoot
+    
     
     var body: some View {
         VStack{
@@ -83,7 +86,7 @@ struct GridView1: View {
             }
         }
         .onAppear(perform: {
-            //            print(processedData)
+                        print(processedData)
             //            print(contents)
             print(sortedcontents())
         })
@@ -91,6 +94,7 @@ struct GridView1: View {
     func sortedcontents() -> [Content] {
         // Search 기능
         // contents를 deepcopy하여 내부를 sorted하여 copy본 return
+        
         var contentsCopy: [Content] = contents
         
         for content in contentsCopy {

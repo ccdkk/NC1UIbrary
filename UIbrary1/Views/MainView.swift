@@ -24,19 +24,25 @@ struct MainView: View {
     @State private var processedData: [String] = []
     
     //pop to root
-    @StateObject var environmentPopToRoot: PopToRoot = PopToRoot(popToRootBool: false)
+        @StateObject var environmentPopToRootImage: PopToRoot = PopToRoot(popToRootBool: false)
+        @StateObject var environmentPopToRootText: PopToRoot = PopToRoot(popToRootBool: false)
+        @StateObject var environmentPopToRootButton: PopToRoot = PopToRoot(popToRootBool: false)
+        @StateObject var environmentPopToRootShape: PopToRoot = PopToRoot(popToRootBool: false)
     
+//    @StateObject var environmentPopToRootList: PopToRootList = PopToRootList(popToRootBoolList: [false,false,false])
     var body: some View {
         NavigationView{
             ZStack{
                 Color.background
                     .ignoresSafeArea()
+                
                 VStack{
                     HStack(spacing:10){
                         //                    SearchButton(isSearch: $isSearch)
                         NavigationLink(destination: SearchView())
                         {SearchButton()
                         }
+                        
                         NavigationLink(destination: addPostView())
                         {
                             Image(systemName: "plus.app")
@@ -47,16 +53,45 @@ struct MainView: View {
                     }
                     List{
                         ForEach(componentList, id: \.self){ element in
-                            NavigationLink(destination: GridView1(processedData: [element]), isActive: self.$environmentPopToRoot.popToRootBool){
+                            NavigationLink(destination: GridView1(processedData: [element]), isActive: popToRootElement(element).popToRootBool)
+                            {
                                 Text(element)
                             }
                         }
+                        //                        Button("Image"){
+                        //                        }
+                        //                        .background(NavigationLink("image", destination: GridView1(processedData: ["Image"]),isActive: self.$environmentPopToRoot.popToRootBool)
+                        //                        )
+                        //
+                        //                        Button("Text"){
+                        //                        }
+                        //                        .background(NavigationLink("Text", destination: GridView1(processedData: ["Text"]),isActive: self.$environmentPopToRoot2.popToRootBool)
+                        //
+                        //                        )
                     }
                 }
                 .navigationBarTitle("UIbrary", displayMode: .inline)
             }
         }
-        .environmentObject(self.environmentPopToRoot)
+        .environmentObject(self.environmentPopToRootImage)
+        .environmentObject(self.environmentPopToRootText)
+        .environmentObject(self.environmentPopToRootButton)
+        .environmentObject(self.environmentPopToRootShape)
+    }
+    
+    func popToRootElement(_ element: String) -> ObservedObject<PopToRoot>.Wrapper {
+        switch element {
+        case "Image":
+            return self.$environmentPopToRootImage
+        case "Text":
+            return self.$environmentPopToRootText
+        case "Button":
+            return self.$environmentPopToRootButton
+        case "Shape":
+            return self.$environmentPopToRootShape
+        default:
+            return self.$environmentPopToRootText
+        }
     }
 }
 
